@@ -1,3 +1,5 @@
+[![ThreatPulse](https://threatpulse.waltsoft.net/badge/CVE-2024-45257)](https://threatpulse.waltsoft.net) [![PyPI](https://img.shields.io/pypi/v/threatpulse)](https://pypi.org/project/threatpulse/)
+
 # ThreatPulse Action
 
 Scan your dependencies for **weaponized** vulnerabilities in CI. Powered by [threatpulse.waltsoft.net](https://threatpulse.waltsoft.net).
