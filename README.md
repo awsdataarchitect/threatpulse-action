@@ -54,8 +54,8 @@ jobs:
 
 ## Authentication
 
-- **Free tier**: 10 lookups/day (no key needed)
 - **API key**: Buy at [threatpulse.waltsoft.net](https://threatpulse.waltsoft.net), add as `THREATPULSE_KEY` secret
+- **Free trial**: Try before you buy at [threatpulse.waltsoft.net](https://threatpulse.waltsoft.net)
 
 ## Links
 
