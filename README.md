@@ -10,7 +10,7 @@ Unlike Trivy/Snyk/Inspector, ThreatPulse tells you if a CVE has a working exploi
 - uses: awsdataarchitect/threatpulse-action@v1
   with:
     fail-on-urgency: 80
-    key: ${{ secrets.THREATPULSE_KEY }}  # Optional: unlimited lookups
+    key: ${{ secrets.THREATPULSE_KEY }}  # Required
 ```
 
 ## Inputs

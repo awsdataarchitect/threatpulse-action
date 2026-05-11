@@ -19,7 +19,7 @@ jobs:
         with:
           fail-on-urgency: 80
           format: sarif
-          key: ${{ secrets.THREATPULSE_KEY }}  # Optional: unlimited lookups
+          key: ${{ secrets.THREATPULSE_KEY }}  # Required
 
       # Optional: upload SARIF to GitHub Code Scanning
       - uses: github/codeql-action/upload-sarif@v3
