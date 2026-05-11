@@ -17,8 +17,8 @@ inputs:
     required: false
     default: 'table'
   key:
-    description: 'ThreatPulse payment key for full access'
-    required: false
+    description: 'ThreatPulse API key (get at threatpulse.waltsoft.net)'
+    required: true
 
 outputs:
   vulnerabilities:
