@@ -1,0 +1,47 @@
+name: 'ThreatPulse Security Scan'
+description: 'Scan dependencies for weaponized vulnerabilities. Fails CI if urgency exceeds threshold.'
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  fail-on-urgency:
+    description: 'Fail if any CVE urgency score >= this value (0-100)'
+    required: false
+    default: '80'
+  lockfile:
+    description: 'Path to lockfile (auto-detected if not set)'
+    required: false
+  format:
+    description: 'Output format: table, json, sarif'
+    required: false
+    default: 'table'
+  key:
+    description: 'ThreatPulse payment key for full access'
+    required: false
+
+outputs:
+  vulnerabilities:
+    description: 'Number of vulnerabilities found'
+  max-urgency:
+    description: 'Highest urgency score found'
+  sarif:
+    description: 'SARIF output (if format=sarif)'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install ThreatPulse CLI
+      shell: bash
+      run: pip install threatpulse
+
+    - name: Run scan
+      shell: bash
+      env:
+        THREATPULSE_KEY: ${{ inputs.key }}
+      run: |
+        ARGS="--threshold ${{ inputs.fail-on-urgency }} --format ${{ inputs.format }}"
+        if [ -n "${{ inputs.lockfile }}" ]; then
+          ARGS="$ARGS --file ${{ inputs.lockfile }}"
+        fi
+        threatpulse scan . $ARGS

@@ -1,0 +1,28 @@
+# .github/workflows/threatpulse.yml
+name: ThreatPulse Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 8 * * *'  # Daily at 8am
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: awsdataarchitect/threatpulse-action@v1
+        with:
+          fail-on-urgency: 80
+          format: sarif
+          key: ${{ secrets.THREATPULSE_KEY }}  # Optional: unlimited lookups
+
+      # Optional: upload SARIF to GitHub Code Scanning
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: threatpulse-results.sarif
